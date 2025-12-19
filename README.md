@@ -1,5 +1,15 @@
 # Block-Recurrent Dynamics in ViTs
 
+<div align="center">
+<img src="raptor_logo.png" width="100%" />
+</div>
+
+**Authors:** Mozes Jacobs*, Thomas Fel*, Richard Hakim*, Alessandra Brondetta, Demba Ba, T. Andy Keller
+
+\* Equal contribution. Correspondence to {mozesjacobs,tfel,richhakim,takeller}@g.harvard.edu
+
+---
+
 **Abstract:** 
 As Vision Transformers (ViTs) become standard backbones across vision, a mechanistic account of their computational phenomenology is now essential.
 Despite architectural cues that hint at dynamical structure, there is no settled framework that interprets Transformer depth as a well-characterized flow.
@@ -11,6 +21,8 @@ We then provide an empirical existence proof for BRH in foundation models by sho
 To provide a mechanistic account of these observations, we leverage our hypothesis to develop a program of **Dynamical Interpretability**. We find **(i)** directional convergence into class-dependent angular basins with self-correcting trajectories under small perturbations, **(ii)** token-specific dynamics, where `cls` executes sharp late reorientations while `patch` tokens exhibit strong late-stage coherence reminiscent of a mean-field effect and converge rapidly toward their mean direction, and **(iii)** a collapse of the update to low rank in late depth, consistent with convergence to low-dimensional attractors.<br>
 
 Altogether, we find that a compact recurrent program emerges along the depth of ViTs, pointing to a low-complexity normative solution that enables these models to be studied through principled dynamical systems analysis.
+
+---
 
 ## Setup
 
