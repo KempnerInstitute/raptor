@@ -12,7 +12,9 @@ To provide a mechanistic account of these observations, we leverage our hypothes
 
 Altogether, we find that a compact recurrent program emerges along the depth of ViTs, pointing to a low-complexity normative solution that enables these models to be studied through principled dynamical systems analysis.
 
-## Environment
+## Setup
+
+### Environment
 To run the code, you will need to create a mamba (or conda) environment from the `environment.yml` file.
 Create and activate the environment with 
 ```bash
@@ -20,12 +22,12 @@ mamba env create -f environment.yml
 mamba activate raptor
 ```
 
-## Extracting DINOv2 Activations for ImageNet-1k
+### Extracting DINOv2 Activations for ImageNet-1k
 For ImageNet, we precompute the DINOv2 activations so that `Raptor` can train faster. 
 We provide a script to extract the activations from the ImageNet-1k dataset. This script is available in the `data` directory.
 Warning: This script takes around 5 hours to run on 1 H100 GPU, and storing the activations requires a lot of disk space.
 
-## Download Pretrained Classifiers
+### Download Pretrained Classifiers
 Download the DINOv2 linear heads from Meta's [repository](https://github.com/facebookresearch/dinov2). 
 These are used during training of `Raptor`.
 
@@ -36,7 +38,7 @@ cp dinov2_vitb14_reg4_linear_head.pth imagenet_probes/dinov2_vitb14_reg4_linear_
 cp dinov2_vits14_reg4_linear_head.pth imagenet_probes/dinov2_vits14_reg4_linear_head.pth
 ```
 
-## Basic Usage
+## Usage Example
 `Raptor` training follows 4 main steps. Here, we show example usage for a 3-block `Raptor`:
 
 1. Determine max-cut segmentations. This has been done for you in src/000_max_cut_dinov2_base.ipynb.
