@@ -4,7 +4,7 @@
 <img src="docs/raptor_logo.png" width="25%" />
 </div>
 
-**Authors:** Mozes Jacobs*, Thomas Fel*, Richard Hakim*, Alessandra Brondetta, Demba Ba, T. Andy Keller
+**Authors:** Mozes Jacobs\*, Thomas Fel\*, Richard Hakim\*, Alessandra Brondetta, Demba Ba, T. Andy Keller
 
 \* Equal contribution. Correspondence to {mozesjacobs,tfel,richhakim,takeller}@g.harvard.edu
 
