@@ -26,6 +26,10 @@ mamba activate raptor
 For ImageNet, we precompute the DINOv2 activations so that `Raptor` can train faster. 
 We provide a script to extract the activations from the ImageNet-1k dataset. This script is available in the `data` directory.
 Warning: This script takes around 5 hours to run on 1 H100 GPU, and storing the activations requires a lot of disk space.
+```bash
+cd data
+python 000_precompute_dinov2_act.py
+```
 
 ### Download Pretrained Classifiers
 Download the DINOv2 linear heads from Meta's [repository](https://github.com/facebookresearch/dinov2). 
