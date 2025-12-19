@@ -32,6 +32,7 @@ Download the DINOv2 linear heads from Meta's [repository](https://github.com/fac
 These are used during training of `Raptor`.
 
 ```bash
+cd src
 wget https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_reg4_linear_head.pth
 wget https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_reg4_linear_head.pth
 cp dinov2_vitb14_reg4_linear_head.pth imagenet_probes/dinov2_vitb14_reg4_linear_head.pth
@@ -44,6 +45,7 @@ cp dinov2_vits14_reg4_linear_head.pth imagenet_probes/dinov2_vits14_reg4_linear_
 1. Determine max-cut segmentations. This has been done for you in src/000_max_cut_dinov2_base.ipynb.
 2. Train each block independently.
 ```bash
+cd src
 python trainer.py --teacher_force --mse --sigma 0 --lr 3e-4 --wandb --t_scale --swiglu --start_layer 0 --end_layer 7 --seed 100
 python trainer.py --teacher_force --mse --sigma 0 --lr 3e-4 --wandb --t_scale --swiglu --start_layer 7 --end_layer 10  --seed 101
 python trainer.py --teacher_force --weighted --sigma 0 --lr 3e-4 --wandb --t_scale --swiglu --start_layer 10 --end_layer 12 --seed 104
@@ -57,7 +59,7 @@ python trainer.py --raptor3 --autoreg --weighted --sigma 0 --lr 3e-4 --wandb --t
 ```
 4. Train linear probes on the frozen pretrained checkpoints.
 ```bash
-cd imagenet_probes
+cd src/imagenet_probes
 python train_probe.py --variant raptor3 --model_seed 1101 --seed 4005
 ```
 
@@ -79,15 +81,15 @@ sbatch 004_raptor4_pretrained.sh
 ```
 4. Train linear probes on the frozen pretrained checkpoints.
 ```bash
-cd ade20k_probes
+cd src/ade20k_probes
 sbatch run_all.sh
 ```
 ```bash
-cd imagenet_probes
+cd src/imagenet_probes
 sbatch run_all.sh
 ```
 ```bash
-cd nyud_probes
+cd src/nyud_probes
 sbatch run_all.sh
 ```
 5. Table 1
