@@ -34,6 +34,9 @@ mamba env create -f environment.yml
 mamba activate raptor
 ```
 
+### Paths
+Edit src/paths.py to have the correct absolute paths to different datasets.
+
 ### Extracting DINOv2 Activations for ImageNet-1k
 For ImageNet, we precompute the DINOv2 activations so that `Raptor` can train faster. 
 We provide a script to extract the activations from the ImageNet-1k dataset. This script is available in the `data` directory.
