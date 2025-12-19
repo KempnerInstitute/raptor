@@ -6,7 +6,7 @@
 
 **Authors:** Mozes Jacobs\*, Thomas Fel\*, Richard Hakim\*, Alessandra Brondetta, Demba Ba, T. Andy Keller
 
-\* Equal contribution. Correspondence to {mozesjacobs,tfel,richhakim,takeller}@g.harvard.edu
+\* Equal contribution. Correspondence to {mozesjacobs,tfel,rhakim,takeller}@g.harvard.edu
 
 ---
 
