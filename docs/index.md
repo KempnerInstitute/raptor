@@ -1,7 +1,7 @@
 # Block-Recurrent Dynamics in ViTs
 
 <div align="center">
-<img src="raptor_logo.png" width="100%" />
+<img src="raptor_logo.png" width="25%" />
 </div>
 
 **Authors:** Mozes Jacobs*, Thomas Fel*, Richard Hakim*, Alessandra Brondetta, Demba Ba, T. Andy Keller
