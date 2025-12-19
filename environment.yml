@@ -1,33 +1,30 @@
-name: raptor_test
+name: raptor
 channels:
   - conda-forge
   - pytorch
   - nvidia
-  - defaults
 dependencies:
   - python=3.12
+  - pytorch=2.3.1
+  - torchvision
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - scikit-image
+  - matplotlib
+  - seaborn
+  - pillow
+  - h5py
+  - zarr
+  - timm
+  - wandb
+  - python-dotenv
+  - ipykernel
+  - ipywidgets
+  - jupyterlab
+  - notebook
+  - einops
   - pip
   - pip:
-    - einops
-    - h5py
-    - ipykernel
-    - ipywidgets
-    - jupyterlab
-    - matplotlib
-    - notebook
-    - numpy
-    - opencv-python
     - Overcomplete
-    - pandas
-    - pillow
-    - python-dotenv
-    - scikit-image
-    - scikit-learn
-    - scipy
-    - seaborn
-    - timm
-    - torch==2.3.1
-    - torchvision
-    - tqdm
-    - wandb
-    - zarr
