@@ -28,7 +28,7 @@ def parse_args():
     parser.add_argument('--bp2', type=str, default="", help="Path to block 2")
     parser.add_argument('--bp3', type=str, default="", help="Path to block 3")
     parser.add_argument('--bp4', type=str, default="", help="Path to block 4")
-    parser.add_argument('--proj_name', type=str, default="raptor_foundation_model", help="Name of the project")
+    parser.add_argument('--proj_name', type=str, default="raptor_foundation_model", help="Name of the project for wandb")
     return parser.parse_args()
 
 
@@ -36,7 +36,7 @@ def build_config(args,
                  init_values=1e-5, dim=768, num_heads=12, mlp_ratio=4.0, wd=1e-4, epochs=20, log_interval=100, save_interval=5000,
                  validate_interval=5000, num_val_samples=2048, batch_size=64, tf_anneal_ratio=0.25, tf_min_ratio=0.0, warmup_iters=10000):
     
-    from paths import PRJ_DIR, IMAGENET_VAL_DIR, DATA_DIR
+    from paths import PRJ_DIR, IMAGENET_VAL_DIR, DATA_DIR, MODEL_DIR
     DINO_MODEL = "dinov2_vitb14_reg"
     CLASSIFIER_PATH = f"{PRJ_DIR}/src/dinov2_vitb14_reg4_linear_head.pth"
 
@@ -46,7 +46,7 @@ def build_config(args,
         'dino_model': DINO_MODEL,
         'val_dir': IMAGENET_VAL_DIR,
         'classifier_path': CLASSIFIER_PATH,
-        'model_save_dir': 'models',
+        'model_save_dir': MODEL_DIR,
         'init_values': init_values,
         'sigma': args.sigma,
         'start_layer': args.start_layer,

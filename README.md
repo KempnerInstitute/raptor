@@ -40,7 +40,7 @@ Edit src/paths.py to have the correct absolute paths to different datasets.
 ### Extracting DINOv2 Activations for ImageNet-1k
 For ImageNet, we precompute the DINOv2 activations so that `Raptor` can train faster. 
 We provide a script to extract the activations from the ImageNet-1k dataset. This script is available in the `data` directory.
-Warning: This script takes around 5 hours to run on 1 H100 GPU, and storing the activations requires a lot of disk space.
+This script takes around 5 hours to run on 1 H100 GPU, and storing the activations requires a lot of disk space.
 ```bash
 cd data
 python 000_precompute_dinov2_act.py
@@ -71,15 +71,24 @@ python trainer.py --teacher_force --weighted --sigma 0 --lr 3e-4 --wandb --t_sca
 ```
 3. Train the full model with the pretrained blocks.
 ```bash
-BP1_1="final_weighted_False_autoregressive_False_distillation_False_teacher_True_mse_True_cosine_False_t_scale_True_swiglu_True_sigma_0.0_start_0_end_7_lr_0.0003_cls_weight_0.34_reg_weight_0.33_patch_weight_0.33_seed_100_step_312500.pt"
-BP1_2="final_weighted_False_autoregressive_False_distillation_False_teacher_True_mse_True_cosine_False_t_scale_True_swiglu_True_sigma_0.0_start_0_end_7_lr_0.0003_cls_weight_0.34_reg_weight_0.33_patch_weight_0.33_seed_106_step_312500.pt"
-BP1_3="final_weighted_False_autoregressive_False_distillation_False_teacher_True_mse_True_cosine_False_t_scale_True_swiglu_True_sigma_0.0_start_0_end_7_lr_0.0003_cls_weight_0.34_reg_weight_0.33_patch_weight_0.33_seed_112_step_312500.pt"
-python trainer.py --raptor3 --autoreg --weighted --sigma 0 --lr 3e-4 --wandb --t_scale --swiglu --start_layer 0 --end_layer 12 --cls_weight 0.45 --reg_weight 0.10 --patch_weight 0.45 --bp1 $BP1_1 --bp2 $BP2_1 --bp3 $BP3_1 --seed 1101
+cd src
+BP1="final_weighted_False_autoregressive_False_distillation_False_teacher_True_mse_True_cosine_False_t_scale_True_swiglu_True_sigma_0.0_start_0_end_7_lr_0.0003_cls_weight_0.34_reg_weight_0.33_patch_weight_0.33_seed_100_step_312500.pt"
+BP2="final_weighted_False_autoregressive_False_distillation_False_teacher_True_mse_True_cosine_False_t_scale_True_swiglu_True_sigma_0.0_start_7_end_10_lr_0.0003_cls_weight_0.34_reg_weight_0.33_patch_weight_0.33_seed_101_step_312500.pt"
+BP3="final_weighted_True_autoregressive_False_distillation_False_teacher_True_mse_False_cosine_False_t_scale_True_swiglu_True_sigma_0.0_start_10_end_12_lr_0.0003_cls_weight_0.34_reg_weight_0.33_patch_weight_0.33_seed_104_step_312500.pt"
+python trainer.py --raptor3 --autoreg --weighted --sigma 0 --lr 3e-4 --wandb --t_scale --swiglu --start_layer 0 --end_layer 12 --cls_weight 0.45 --reg_weight 0.10 --patch_weight 0.45 --bp1 $BP1 --bp2 $BP2 --bp3 $BP3 --seed 1101
 ```
 4. Train linear probes on the frozen pretrained checkpoints.
 ```bash
 cd src/imagenet_probes
 python train_probe.py --variant raptor3 --model_seed 1101 --seed 4005
+```
+```bash
+cd src/ade20k_probes
+python train_probe.py --variant raptor3 --model_seed 1101 --seed 5005
+```
+```bash
+cd src/nyud_probes
+python train_probe.py --variant raptor3 --model_seed 1101 --seed 6005
 ```
 
 ## Reproducing Foundation Models Results (Section 3)

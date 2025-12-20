@@ -25,6 +25,7 @@ dependencies:
   - jupyterlab
   - notebook
   - einops
+  - ignite
   - pip
   - pip:
     - Overcomplete

@@ -2,15 +2,15 @@ import glob
 import os
 import sys
 
-def find_raptor_checkpoint(variant: str, seed: int, base_dir: str) -> str:
+def find_raptor_checkpoint(variant: str, seed: int, models_dir: str) -> str:
     """
     Find the raptor checkpoint file for a given variant and seed.
     
     Args:
         variant: 'raptor2', 'raptor3', or 'raptor4'
         seed: The seed number (e.g., 1001)
-        base_dir: The directory where runs/models is located.
-                  Typically '/path/to/project/result_dir'
+        models_dir: The directory where model checkpoints are located.
+                  Typically MODEL_FOLDER in paths.py
     
     Returns:
         Absolute path to the checkpoint file.
@@ -18,9 +18,7 @@ def find_raptor_checkpoint(variant: str, seed: int, base_dir: str) -> str:
     Raises:
         FileNotFoundError: If no matching file is found.
         ValueError: If multiple matching files are found.
-    """
-    models_dir = os.path.join(base_dir, "runs", "models")
-    
+    """    
     # Pattern to match the file naming convention observed:
     # final_{variant}_..._seed_{seed}_step_*.pt
     # The variant name appears near the front.

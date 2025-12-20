@@ -10,16 +10,15 @@ from dino_wrapper import DinoModelWrapper
 from raptor_wrapper import RaptorWrapper
 from trainer import run_train
 
-from paths import ADE20K_DIR
+from paths import ADE20K_DIR, MODEL_DIR
 DATA_PATH = ADE20K_DIR
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def main():
     parser = argparse.ArgumentParser(description="Train Raptor/Dino Probe on ADE20k")
     parser.add_argument("--variant", type=str, required=True, choices=["raptor2", "raptor3", "raptor4", "dino_s", "dino_b"], help="Model variant")
     parser.add_argument("--seed", type=int, default=42, help="Seed for probe training (initialization, shuffling)")
     parser.add_argument("--model_seed", type=int, help="Seed of the pre-trained Raptor model (required for Raptor variants)")
-    parser.add_argument("--output_dir", type=str, default=".", help="Directory to save the classifier")
+    parser.add_argument("--output_dir", type=str, default="probes", help="Directory to save the classifier")
     parser.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu", help="Device to use")
     
     args = parser.parse_args()
@@ -40,7 +39,7 @@ def main():
     if args.variant.startswith("raptor"):
         # Raptor Training
         try:
-            raptor_model_path = find_raptor_checkpoint(args.variant, args.model_seed, BASE_DIR)
+            raptor_model_path = find_raptor_checkpoint(args.variant, args.model_seed, MODEL_DIR)
             print(f"Loading Raptor model from: {raptor_model_path}")
         except Exception as e:
             print(f"Error finding model: {e}")

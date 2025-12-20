@@ -10,8 +10,7 @@ from raptor_wrapper import RaptorWrapper
 from dino_wrapper import DinoModelWrapper
 from trainer import run_train
 
-from paths import PRJ_DIR, NYUD_DIR as DATA_FOLDER
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from paths import PRJ_DIR, MODEL_DIR, NYUD_DIR as DATA_FOLDER
 
 def main():
     parser = argparse.ArgumentParser(description="Train Raptor/Dino Probe on NYUD")
@@ -43,7 +42,7 @@ def main():
     if args.variant.startswith("raptor"):
         # Raptor Training
         try:
-            raptor_model_path = find_raptor_checkpoint(args.variant, args.model_seed, BASE_DIR)
+            raptor_model_path = find_raptor_checkpoint(args.variant, args.model_seed, MODEL_DIR)
             print(f"Loading Raptor model from: {raptor_model_path}")
         except Exception as e:
             print(f"Error finding model: {e}")
