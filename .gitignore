@@ -29,7 +29,6 @@ build/
 *.sqlite
 
 # Data (common in research repos)
-data/
 outputs/
 wandb/
 models/

@@ -1,3 +1,9 @@
+from numcodecs import Blosc
+import zarr
+from tqdm import tqdm
+import threading
+import queue
+from paths import IMAGENET_TRAIN_DIR, DATA_DIR
 import os
 import random
 import numpy as np
@@ -10,7 +16,6 @@ from torch.utils.data import DataLoader, Subset
 
 import sys
 sys.path.append("../src/")
-from paths import IMAGENET_TRAIN_DIR, DATA_DIR
 
 IMAGENET_DEFAULT_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_DEFAULT_STD = (0.229, 0.224, 0.225)
@@ -46,6 +51,7 @@ dataloader = DataLoader(
     num_workers=4, pin_memory=True, persistent_workers=True, prefetch_factor=2
 )
 
+
 def inference(dino, x):
     with torch.no_grad():
         x = x.cuda().float()
@@ -60,16 +66,7 @@ def inference(dino, x):
 
         return activations.transpose(0, 1)
 
-import os
-import queue
-import threading
-import numpy as np
-import torch
-from tqdm import tqdm
-import zarr
-from numcodecs import Blosc
 
-# Zarr parameters
 num_samples = len(dataset)
 num_layers = 13
 num_tokens = 261
@@ -88,8 +85,8 @@ z = zarr.open(
     zarr_version=2
 )
 
-# Writer queue
 write_queue = queue.Queue(maxsize=24)
+
 
 def writer_thread(zarr_array, q):
     while True:
@@ -108,11 +105,10 @@ def writer_thread(zarr_array, q):
             print(f"[Writer Error] At index {index}: {e}")
         q.task_done()
 
-# Launch background writer thread
+
 writer = threading.Thread(target=writer_thread, args=(z, write_queue))
 writer.start()
 
-# Main loop
 index = 0
 for batch in tqdm(dataloader, desc="Writing activations to Zarr"):
     x, _ = batch
@@ -125,13 +121,7 @@ for batch in tqdm(dataloader, desc="Writing activations to Zarr"):
     write_queue.put((index, acts_np))
     index += acts_np.shape[0]
 
-# Flush and stop
+# flush and stop
 write_queue.join()
 write_queue.put(None)
 writer.join()
-
-print("✅ All activations written successfully.")
-
-#import zarr
-#z = zarr.open(DATA_DIR + '/activations.zarr', mode='r')
-#print(z.shape)  # should match expected total samples

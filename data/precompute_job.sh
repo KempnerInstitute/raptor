@@ -14,4 +14,4 @@ module load gcc/13.2.0-fasrc01
 source ~/.bashrc
 mamba activate slot_attention6
 
-python 000_precompute_dinov2_act.py
+python precompute_dinov2_act.py
