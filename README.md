@@ -1,26 +1,28 @@
-# Block-Recurrent Dynamics in ViTs
-
 <div align="center">
-<img src="docs/raptor_logo.png" width="25%" />
+
+# Block-Recurrent Dynamics in ViTs (Raptor)
+
+<img src="docs/raptor_logo.png" width="28%" />
+
+[≫ Raptor Preprint](https://arxiv.org/abs/2510.08638)
+
+[**Mozes Jacobs**](https://scholar.google.com/citations?user=8Dm0KfQAAAAJ&hl=en)$^{\star1}$ &nbsp; [**Thomas Fel**](https://thomasfel.me)$^{\star1}$ &nbsp; [**Richard Hakim**](https://richhakim.com/)$^{\star1}$
+<br>
+[**Alessandra Brondetta**](https://alessandrabrondetta.github.io/)$^{2}$ &nbsp; [**Demba Ba**](https://scholar.google.com/citations?user=qHiACEgAAAAJ&hl=en)$^{1,3}$ &nbsp; [**T. Andy Keller**](https://akandykeller.github.io/)$^{1}$
+
+<small>
+
+$^1$**Kempner Institute, Harvard University** &nbsp; $^2$**Osnabrück University** &nbsp; $^3$**Harvard University**
+
+</small>
+
 </div>
-
-**Authors:** Mozes Jacobs\*, Thomas Fel\*, Richard Hakim\*, Alessandra Brondetta, Demba Ba, T. Andy Keller
-
-\* Equal contribution. Correspondence to {mozesjacobs,tfel,rhakim,takeller}@g.harvard.edu
 
 ---
 
-**Abstract:** 
-As Vision Transformers (ViTs) become standard backbones across vision, a mechanistic account of their computational phenomenology is now essential.
-Despite architectural cues that hint at dynamical structure, there is no settled framework that interprets Transformer depth as a well-characterized flow.
-In this work, we introduce the **Block-Recurrent Hypothesis (BRH)**, arguing that trained ViTs admit a block-recurrent depth structure such that the computation of the original L blocks can be accurately rewritten using only k << L distinct blocks applied recurrently.
-Across diverse ViTs, between-layer representational similarity matrices suggest few contiguous phases. Yet, representational similarity does not necessarily translate to functional similarity.
-To determine whether these phases reflect genuinely reusable computation, we operationalize our hypothesis in the form of block recurrent surrogates of pretrained ViTs, which we call **R**ecurrent **A**pproximations to **P**hase-structured **T**ransf**OR**mers (`Raptor`). 
-Using small-scale ViTs, we demonstrate that phase-structure metrics correlate with our ability to accurately fit `Raptor`, and identify the role of training and stochastic depth in promoting the recurrent block structure. 
-We then provide an empirical existence proof for BRH in foundation models by showing that we can train a `Raptor` model to recover $96\%$ of DINOv2 ImageNet-1k linear probe accuracy in only 2 blocks while maintaining equivalent computational cost. 
-To provide a mechanistic account of these observations, we leverage our hypothesis to develop a program of **Dynamical Interpretability**. We find **(i)** directional convergence into class-dependent angular basins with self-correcting trajectories under small perturbations, **(ii)** token-specific dynamics, where `cls` executes sharp late reorientations while `patch` tokens exhibit strong late-stage coherence reminiscent of a mean-field effect and converge rapidly toward their mean direction, and **(iii)** a collapse of the update to low rank in late depth, consistent with convergence to low-dimensional attractors.<br>
+**tl;dr** Our work introduces the Block-Recurrent Hypothesis (BRH), by noticing that foundation models like DINOv2 can be rewritten using only two recurrent blocks to recover 96% of the original accuracy. We leverage our framework and explore a Dynamical Interpretability approach where we interpret token evolution through layers as trajectories and show that they converge into class-dependent angular basins while late-stage updates collapse into low-rank attractors.
 
-Altogether, we find that a compact recurrent program emerges along the depth of ViTs, pointing to a low-complexity normative solution that enables these models to be studied through principled dynamical systems analysis.
+Ultimately, the study reveals that Vision Transformers seems to naturally converge toward compact, iterative programs instead of unique layer-by-layer transformations (indicating a lower algorithmic complexity / Kolmogorov complexity).
 
 ---
 
@@ -28,26 +30,26 @@ Altogether, we find that a compact recurrent program emerges along the depth of 
 
 ### Environment
 To run the code, you will need to create a mamba (or conda) environment from the `environment.yml` file.
-Create and activate the environment with 
+Create and activate the environment with
 ```bash
 mamba env create -f environment.yml
 mamba activate raptor
 ```
 
 ### Paths
-Edit src/paths.py to have the correct absolute paths to different datasets.
+Edit `src/paths.py` to have the correct absolute paths to different datasets.
 
 ### Extracting DINOv2 Activations for ImageNet-1k
-For ImageNet, we precompute the DINOv2 activations so that `Raptor` can train faster. 
+For ImageNet, we precompute the DINOv2 activations so that `Raptor` can train faster.
 We provide a script to extract the activations from the ImageNet-1k dataset. This script is available in the `data` directory.
 This script takes around 5 hours to run on 1 H100 GPU, and storing the activations requires a lot of disk space.
 ```bash
 cd data
-python 000_precompute_dinov2_act.py
+python precompute_dinov2_act.py
 ```
 
 ### Download Pretrained Classifiers
-Download the DINOv2 linear heads from Meta's [repository](https://github.com/facebookresearch/dinov2). 
+Download the DINOv2 linear heads from Meta's [repository](https://github.com/facebookresearch/dinov2).
 These are used during training of `Raptor`.
 
 ```bash
@@ -94,11 +96,11 @@ python train_probe.py --variant raptor3 --model_seed 1101 --seed 6005
 ## Reproducing Foundation Models Results (Section 3)
 To reproduce the results for the foundation models section (Table 1 and Figure 7), do the following:
 
-1. Determine max-cut segmentations. This has been done for you in src/000_max_cut_dinov2_base.ipynb.
+1. Determine max-cut segmentations. This has been done for you in src/max_cut_dinov2_base.ipynb.
 2. Train each block independently.
 ```bash
 cd src/runs
-sbatch 001_blocks.sh
+sbatch blocks.sh
 ```
 3. Train the full model with the pretrained blocks.
 ```bash

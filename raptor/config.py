@@ -1,5 +1,6 @@
 from trainer import train
 
+
 def parse_args():
     import argparse
     parser = argparse.ArgumentParser(description="Train the model with specified configurations.")
@@ -14,11 +15,15 @@ def parse_args():
     parser.add_argument('--lr', type=float, default=3e-4, help="Learning rate")
     parser.add_argument('--start_layer', type=int, default=0, help="Start layer for the model (takes in this layer)")
     parser.add_argument('--end_layer', type=int, default=7, help="End layer for the model (outputs this layer)")
-    parser.add_argument('--wandb', action='store_true', help="Use wandb for logging (if False, only logs through prints)")
+    parser.add_argument('--wandb', action='store_true',
+                        help="Use wandb for logging (if False, only logs through prints)")
     parser.add_argument('--weighted', action='store_true', help="Use weight on cls, patch, and register")
-    parser.add_argument('--cls_weight', type=float, default=0.34, help="Weight of cls token in loss. Applies only if --weighted.")
-    parser.add_argument('--reg_weight', type=float, default=0.33, help="Weight of reg token in loss. Applies only if --weighted.")
-    parser.add_argument('--patch_weight', type=float, default=0.33, help="Weight of patch token in loss. Applies only if --weighted.")
+    parser.add_argument('--cls_weight', type=float, default=0.34,
+                        help="Weight of cls token in loss. Applies only if --weighted.")
+    parser.add_argument('--reg_weight', type=float, default=0.33,
+                        help="Weight of reg token in loss. Applies only if --weighted.")
+    parser.add_argument('--patch_weight', type=float, default=0.33,
+                        help="Weight of patch token in loss. Applies only if --weighted.")
     parser.add_argument('--seed', type=int, default=0, help="Random seed for initialization")
     parser.add_argument('--raptor2', action='store_true', help="Build Raptor2")
     parser.add_argument('--raptor3', action='store_true', help="Build Raptor3")
@@ -28,14 +33,16 @@ def parse_args():
     parser.add_argument('--bp2', type=str, default="", help="Path to block 2")
     parser.add_argument('--bp3', type=str, default="", help="Path to block 3")
     parser.add_argument('--bp4', type=str, default="", help="Path to block 4")
-    parser.add_argument('--proj_name', type=str, default="raptor_foundation_model", help="Name of the project for wandb")
+    parser.add_argument('--proj_name', type=str, default="raptor_foundation_model",
+                        help="Name of the project for wandb")
     return parser.parse_args()
 
 
-def build_config(args,
-                 init_values=1e-5, dim=768, num_heads=12, mlp_ratio=4.0, wd=1e-4, epochs=20, log_interval=100, save_interval=5000,
-                 validate_interval=5000, num_val_samples=2048, batch_size=64, tf_anneal_ratio=0.25, tf_min_ratio=0.0, warmup_iters=10000):
-    
+def build_config(
+        args, init_values=1e-5, dim=768, num_heads=12, mlp_ratio=4.0, wd=1e-4, epochs=20, log_interval=100,
+        save_interval=5000, validate_interval=5000, num_val_samples=2048, batch_size=64, tf_anneal_ratio=0.25,
+        tf_min_ratio=0.0, warmup_iters=10000):
+
     from paths import PRJ_DIR, IMAGENET_VAL_DIR, DATA_DIR, MODEL_DIR
     DINO_MODEL = "dinov2_vitb14_reg"
     CLASSIFIER_PATH = f"{PRJ_DIR}/src/dinov2_vitb14_reg4_linear_head.pth"
@@ -58,7 +65,7 @@ def build_config(args,
         'wd': wd,
         'epochs': epochs,
         'device': 'cuda',
-        'log_interval': log_interval, 
+        'log_interval': log_interval,
         'save_interval': save_interval,
         'validate_interval': validate_interval,
         'mse': args.mse,

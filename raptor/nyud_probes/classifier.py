@@ -82,7 +82,7 @@ class PatchDepthClassifier(nn.Module):
         # Build the 1x1 linear classifier if needed, then apply
         logits = self.classifier(patch_feat)  # (B, num_bins, H*scale, W*scale)
         return logits
-    
+
     def decode_depth(self, logits: torch.Tensor) -> torch.Tensor:
         """
         Decode classifier logits to a continuous depth map via expected value over linear bins.
@@ -101,7 +101,6 @@ class PatchDepthClassifier(nn.Module):
         """Bin centers (midpoints), shape (num_bins,)."""
         edges = self.get_bin_edges(device=device, dtype=dtype)
         return 0.5 * (edges[:-1] + edges[1:])
-
 
     def get_bin_edges(self, device=None, dtype=None) -> torch.Tensor:
         """Linearly spaced bin edges in [min_depth, max_depth], shape (num_bins+1,)."""
