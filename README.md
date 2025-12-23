@@ -4,6 +4,7 @@
 
 <img src="assets/raptor_logo.png" width="33%" />
 
+[![tests](https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml)
 [![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/1234.56789)
 [≫ Raptor Preprint](https://arxiv.org/abs/2510.08638)
 
