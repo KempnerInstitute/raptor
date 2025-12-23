@@ -2,7 +2,7 @@
 
 # Block-Recurrent Dynamics in ViTs (Raptor)
 
-<img src="docs/raptor_logo.png" width="28%" />
+<img src="assets/raptor_logo.png" width="33%" />
 
 [≫ Raptor Preprint](https://arxiv.org/abs/2510.08638)
 
