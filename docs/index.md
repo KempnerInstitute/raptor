@@ -1,22 +1,43 @@
+---
+title: Block-Recurrent Dynamics in ViTs (Raptor)
+layout: default
+---
+
 <div align="center">
 
-# Block-Recurrent Dynamics in ViTs (Raptor)
+  <img src="https://raw.githubusercontent.com/KempnerInstitute/raptor/main/assets/raptor_logo.png" width="33%" alt="Raptor logo" />
 
-<img src="assets/raptor_logo.png" width="33%" />
+  <div>
+    <a href="https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml">
+      <img alt="tests" src="https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml/badge.svg?branch=main" />
+    </a>
+    <a href="https://arxiv.org/abs/1234.56789">
+      <img alt="arXiv" src="https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg" />
+    </a>
+    <br>
+    <!--<a href="https://arxiv.org/abs/2510.08638">≫ Raptor Preprint</a> -->
+  </div>
 
-[![tests](https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml)
-[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/1234.56789)
+  <div>
+    <a href="https://scholar.google.com/citations?user=8Dm0KfQAAAAJ&hl=en"><strong>Mozes Jacobs</strong></a><sup>⋆1</sup>
+    &nbsp;
+    <a href="https://thomasfel.me"><strong>Thomas Fel</strong></a><sup>⋆1</sup>
+    &nbsp;
+    <a href="https://richhakim.com/"><strong>Richard Hakim</strong></a><sup>⋆1</sup>
+  </div>
+  <div>
+    <a href="https://alessandrabrondetta.github.io/"><strong>Alessandra Brondetta</strong></a><sup>2</sup>
+    &nbsp;
+    <a href="https://scholar.google.com/citations?user=qHiACEgAAAAJ&hl=en"><strong>Demba Ba</strong></a><sup>1,3</sup>
+    &nbsp;
+    <a href="https://akandykeller.github.io/"><strong>T. Andy Keller</strong></a><sup>1</sup>
+  </div>
 
-[**Mozes Jacobs**](https://scholar.google.com/citations?user=8Dm0KfQAAAAJ&hl=en)$^{\star1}$ &nbsp; [**Thomas Fel**](https://thomasfel.me)$^{\star1}$ &nbsp; [**Richard Hakim**](https://richhakim.com/)$^{\star1}$
-<br>
-[**Alessandra Brondetta**](https://alessandrabrondetta.github.io/)$^{2}$ &nbsp; [**Demba Ba**](https://scholar.google.com/citations?user=qHiACEgAAAAJ&hl=en)$^{1,3}$ &nbsp; [**T. Andy Keller**](https://akandykeller.github.io/)$^{1}$
-
-<small>
-
-$^1$**Kempner Institute, Harvard University** &nbsp; $^2$**Osnabrück University** &nbsp; $^3$**Harvard University**
-
-</small>
-
+  <small>
+    <sup>1</sup><strong>Kempner Institute, Harvard University</strong> &nbsp;
+    <sup>2</sup><strong>Osnabrück University</strong> &nbsp;
+    <sup>3</sup><strong>Harvard University</strong>
+  </small>
 </div>
 
 ---

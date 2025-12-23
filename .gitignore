@@ -37,3 +37,8 @@ checkpoints/
 # Other
 .DS_Store
 condaenv.yg5lrtta.requirements.txt
+
+# Local doc
+Gemfile
+Gemfile.lock
+_site/
