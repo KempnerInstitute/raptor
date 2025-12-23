@@ -4,6 +4,7 @@
 
 <img src="assets/raptor_logo.png" width="33%" />
 
+[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/1234.56789)
 [≫ Raptor Preprint](https://arxiv.org/abs/2510.08638)
 
 [**Mozes Jacobs**](https://scholar.google.com/citations?user=8Dm0KfQAAAAJ&hl=en)$^{\star1}$ &nbsp; [**Thomas Fel**](https://thomasfel.me)$^{\star1}$ &nbsp; [**Richard Hakim**](https://richhakim.com/)$^{\star1}$
