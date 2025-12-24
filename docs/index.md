@@ -12,7 +12,7 @@ layout: default
       <img alt="tests" src="https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml/badge.svg?branch=main" />
     </a>
     <a href="https://arxiv.org/abs/2512.19941">
-      <img alt="arXiv" src="https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg" />
+      <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2512.19941-b31b1b.svg" />
     </a>
     <br>
     <!--<a href="https://arxiv.org/abs/2510.08638">≫ Raptor Preprint</a> -->

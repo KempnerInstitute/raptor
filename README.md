@@ -5,7 +5,7 @@
 <img src="assets/raptor_logo.png" width="33%" />
 
 [![tests](https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/KempnerInstitute/raptor/actions/workflows/tests.yml)
-[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/2512.19941)
+[![arXiv](https://img.shields.io/badge/arXiv-2512.19941-b31b1b.svg)](https://arxiv.org/abs/2512.19941)
 
 [**Mozes Jacobs**](https://scholar.google.com/citations?user=8Dm0KfQAAAAJ&hl=en)$^{\star1}$ &nbsp; [**Thomas Fel**](https://thomasfel.me)$^{\star1}$ &nbsp; [**Richard Hakim**](https://richhakim.com/)$^{\star1}$
 <br>
