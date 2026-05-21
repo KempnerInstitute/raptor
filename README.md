@@ -27,6 +27,14 @@ Ultimately, the study reveals that Vision Transformers seems to naturally conver
 
 ---
 
+## Pretrained Weights & Demo
+
+The pretrained `Raptor` model weights and a small demo are available to download at the following Google Drive link:
+
+https://drive.google.com/file/d/1LRldgST9T6-s7dIR06z4SfafR_l2LSQQ/view?usp=sharing
+
+---
+
 ## Setup
 
 ### Environment
